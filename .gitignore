@@ -1,0 +1,15 @@
+# Archivos de Sistema Operativo Comunes
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Archivos de Configuración de Editores (Ej. VS Code)
+.vscode/
+
+# Archivos temporales de Servidores / Caching
+*.log
+*.tmp
+*.swp
+.history/
+temp/
+

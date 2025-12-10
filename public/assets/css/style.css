@@ -1,0 +1,547 @@
+/* =================================================================
+   BASE Y RESET (UX & Performance)
+================================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+:root {
+    /* Paleta de Colores (Máximo Contraste y Toque Eléctrico) */
+    --color-principal: #0d1117; /* Fondo Oscuro Fuerte (Header/Nav) */
+    --color-fondo: #ffffff;    /* Fondo Blanco puro (Contenido) */
+    --color-acento: #00d2ff;   /* ACENTO ELÉCTRICO (CTA, Highlights) */
+    --color-texto-claro: #f0f6fc; /* Texto en fondos oscuros */
+    --color-texto-oscuro: #2c3e50; /* Texto en fondos claros (Alto Contraste A11Y) */
+
+    /* Fuentes Elegidas (Montserrat para títulos, Poppins para cuerpo) */
+    --fuente-titulo: 'Montserrat', sans-serif;
+    --fuente-cuerpo: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth; /* Desplazamiento suave para la UX */
+}
+
+body {
+    font-family: var(--fuente-cuerpo);
+    color: var(--color-texto-oscuro);
+    background-color: var(--color-fondo);
+    line-height: 1.7; /* UX Perfecta: Alta legibilidad */
+    min-width: 320px; /* Asegura un mínimo de responsividad */
+}
+
+h1, h2, h3 {
+    font-family: var(--fuente-titulo);
+    line-height: 1.2;
+}
+
+/* =================================================================
+   ACCESIBILIDAD Y USABILIDAD (A11Y & UX)
+================================================================= */
+
+/* Foco Visual (A11Y): Esencial para la navegación por teclado */
+:focus {
+    outline: 3px solid var(--color-acento); 
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.highlight {
+    color: var(--color-acento);
+}
+
+/* =================================================================
+   BARRA DE NAVEGACIÓN (NAVBAR)
+================================================================= */
+.navbar {
+    position: sticky; /* Se pega arriba al hacer scroll (UX) */
+    top: 0;
+    z-index: 1000; /* Asegura que esté siempre encima de todo */
+    background-color: var(--color-principal);
+    color: var(--color-texto-claro);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between; /* El logo a la izquierda, los enlaces a la derecha */
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra elegante */
+}
+
+.nav-logo {
+    font-family: var(--fuente-titulo);
+    font-size: 1.6em;
+    font-weight: 900;
+    color: var(--color-acento); /* El nombre de la empresa resalta */
+}
+
+.nav-links a {
+    color: var(--color-texto-claro);
+    margin-left: 25px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--color-acento);
+}
+
+/* =================================================================
+   BOTONES (CTA)
+================================================================= */
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    font-weight: 600; 
+    border-radius: 50px; 
+    transition: all 0.3s; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background-color: var(--color-acento);
+    color: var(--color-principal); 
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #00b0d6; 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 20px rgba(0, 210, 255, 0.3);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--color-acento);
+    color: var(--color-acento);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-acento);
+    color: var(--color-principal);
+    transform: translateY(-2px);
+}
+
+/* ANIMACIÓN: Pulso sutil para llamar la atención del CTA principal */
+@keyframes pulse {
+    from { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 210, 255, 0.4); } 
+    to { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(0, 210, 255, 0); }
+}
+
+.pulse-animation {
+    animation: pulse 1.5s infinite; 
+}
+
+
+/* =================================================================
+   HERO (El Bloque LCP)
+================================================================= */
+.hero {
+    background-color: var(--color-principal); 
+    color: var(--color-texto-claro);
+    text-align: center;
+    padding: 120px 20px 80px; 
+}
+
+
+/* =================================================================
+   MEDIA QUERIES (UX Móvil)
+================================================================= */
+@media (max-width: 768px) {
+    /* Navbar móvil */
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .nav-links {
+        display: none; /* Ocultamos los enlaces */
+    }
+
+    /* El logo se centra */
+    .nav-logo {
+        text-align: center;
+        width: 100%; 
+    }
+    
+    /* Contenido principal */
+    .features {
+        flex-direction: column; 
+    }
+
+    .hero h1 {
+        font-size: 2.2em;
+    }
+}
+
+/* =================================================================
+   CARACTERÍSTICAS (FEATURES)
+   Diseño de Tarjetas Moderno y Flexible
+================================================================= */
+.features {
+    padding: 80px 40px;
+    background-color: var(--color-fondo); /* Fondo blanco */
+    display: flex; /* Para que las tarjetas se pongan en línea */
+    gap: 30px; /* Espacio entre las tarjetas */
+    justify-content: center; /* Centrar las tarjetas en la página */
+    max-width: 1200px;
+    margin: 0 auto; /* Centrar la sección */
+}
+
+.feature-card {
+    flex-basis: 30%; /* Cada tarjeta ocupa un 30% del espacio */
+    padding: 30px;
+    border: 1px solid #e0e0e0; /* Borde muy sutil */
+    border-radius: 10px; /* Bordes suaves */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Sombra muy suave y moderna */
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: left; /* Títulos y texto alineados a la izquierda */
+}
+
+.feature-card:hover {
+    transform: translateY(-5px); /* Pequeño levantamiento al pasar el ratón (UX) */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h3 {
+    color: var(--color-acento); /* Color de acento en el título */
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    font-size: 1em;
+    color: var(--color-texto-oscuro);
+}
+
+/* =================================================================
+   TESTIMONIO (Prueba Social)
+   Diseño de Cita con Alto Impacto Visual
+================================================================= */
+.testimonial {
+    background-color: #f7f9fb; /* Fondo gris muy claro para diferenciar */
+    padding: 100px 40px;
+    text-align: center;
+}
+
+.testimonial blockquote {
+    font-size: 1.8em; /* Tamaño grande para el impacto */
+    font-style: italic;
+    color: var(--color-principal); /* Texto oscuro fuerte */
+    max-width: 800px;
+    margin: 0 auto 20px;
+    position: relative;
+    line-height: 1.4;
+}
+
+.testimonial blockquote::before,
+.testimonial blockquote::after {
+    content: '"';
+    font-size: 4em;
+    color: #e0e0e0; /* Color gris muy claro para las comillas */
+    position: absolute;
+    opacity: 0.5;
+}
+
+.testimonial blockquote::before {
+    content: '“';
+    left: -40px;
+    top: -20px;
+}
+
+.testimonial blockquote::after {
+    content: '”';
+    right: -40px;
+    bottom: -40px;
+}
+
+
+.testimonial cite {
+    display: block;
+    margin-top: 30px;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: 700;
+    color: var(--color-acento);
+}
+
+/* =================================================================
+   CALL TO ACTION FINAL (CTA-FINAL)
+   Diseño de Último Empujón a la Conversión
+================================================================= */
+.cta-final {
+    background-color: var(--color-principal); /* Fondo oscuro para contraste */
+    color: var(--color-texto-claro);
+    padding: 80px 40px;
+    text-align: center;
+}
+
+.cta-final h2 {
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    font-weight: 900;
+}
+
+/* =================================================================
+   PIE DE PÁGINA (FOOTER)
+   Información Final y Legal
+================================================================= */
+footer {
+    background-color: #1a1a1a;
+    color: #aaaaaa;
+    padding: 20px 40px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+
+/* =================================================================
+   ADAPTACIÓN MÓVIL (Responsividad)
+================================================================= */
+@media (max-width: 768px) {
+    .features {
+        flex-direction: column; /* Apilamos las tarjetas en móviles */
+        padding: 40px 20px;
+    }
+
+    .feature-card {
+        flex-basis: 100%;
+        margin-bottom: 20px;
+    }
+
+    .testimonial {
+        padding: 60px 20px;
+    }
+
+    .testimonial blockquote {
+        font-size: 1.4em;
+    }
+
+    .cta-final h2 {
+        font-size: 1.8em;
+    }
+}
+
+/* =================================================================
+   ANIMACIONES GPU ACELERADAS 
+================================================================= */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0); /* Mover en 3D para forzar la GPU */
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animate-on-load {
+    animation: fadeInUp 0.8s ease-out forwards; /* Aplicación de la animación */
+    opacity: 0; /* Asegura que el elemento no es visible antes de animar */
+}
+
+/* Retrasos para que los elementos aparezcan secuencialmente (Mejora la UX) */
+.animate-delay-1 { animation-delay: 0.1s; }
+.animate-delay-2 { animation-delay: 0.2s; }
+.animate-delay-3 { animation-delay: 0.3s; }
+.animate-delay-4 { animation-delay: 0.4s; }
+
+
+/* =================================================================
+   SECCIÓN 2.5: PROBLEMA/SOLUCIÓN (GAP)
+================================================================= */
+.gap-section {
+    padding: 100px 40px;
+    text-align: center;
+    background-color: #f0f6fc; /* Contraste suave con el fondo blanco */
+}
+
+.gap-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.gap-content h2 {
+    font-size: 2em;
+    margin-bottom: 40px;
+    color: var(--color-principal);
+}
+
+.problem-solution {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    text-align: left;
+}
+
+.problem, .solution {
+    flex: 1;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.problem {
+    background-color: #fff0f0; /* Fondo de alerta suave */
+    border-left: 5px solid #ff4d4d; /* Rojo para el problema */
+}
+
+.solution {
+    background-color: #f0fff5; /* Fondo de éxito suave */
+    border-left: 5px solid #00d2ff; /* Nuestro azul de acento */
+}
+
+.problem h3, .solution h3 {
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.problem ul, .solution ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.problem li, .solution li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+.problem li:last-child, .solution li:last-child {
+    border-bottom: none;
+}
+
+
+/* =================================================================
+   SECCIÓN 2.7: PROCESO (TIMELINE)
+================================================================= */
+.process-section {
+    padding: 100px 40px;
+    text-align: center;
+    background-color: var(--color-fondo);
+}
+
+.process-section h2 {
+    font-size: 2em;
+    margin-bottom: 50px;
+    color: var(--color-principal);
+}
+
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    padding-top: 20px;
+}
+
+/* Línea horizontal en el proceso */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 10%;
+    right: 10%;
+    height: 3px;
+    background-color: #e0e0e0;
+    z-index: 0;
+}
+
+.step {
+    flex: 1;
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    padding: 20px 10px;
+    /* Aplicamos la animación de aparición */
+    transition: transform 0.3s;
+}
+
+.step-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-acento);
+    color: var(--color-principal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 0 auto 20px;
+    border: 5px solid var(--color-fondo); /* Borde blanco para separarse de la línea */
+    /* Aplicamos la animación de pulso al icono */
+    animation: step-pulse 2s infinite alternate; 
+}
+
+/* Pequeños ajustes para los retrasos de la animación de pulso */
+.step-2 .step-icon { animation-delay: 0.5s; }
+.step-3 .step-icon { animation-delay: 1s; }
+.step-4 .step-icon { animation-delay: 1.5s; }
+
+@keyframes step-pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+.step h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+/* =================================================================
+   ADAPTACIÓN MÓVIL 
+================================================================= */
+@media (max-width: 768px) {
+    .gap-section, .process-section {
+        padding: 50px 20px;
+    }
+    
+    .problem-solution {
+        flex-direction: column;
+    }
+
+    .timeline {
+        flex-direction: column;
+        padding-top: 0;
+        align-items: flex-start;
+        /* Quitamos la línea horizontal en móvil y usamos una vertical */
+    }
+
+    .timeline::before {
+        display: none;
+    }
+
+    .step {
+        width: 100%;
+        text-align: left;
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        border-left: 3px solid #e0e0e0; /* Línea vertical simple */
+        padding-left: 20px;
+        margin-left: 30px;
+    }
+    
+    .step-icon {
+        margin: 0;
+        flex-shrink: 0; /* Evita que el icono se comprima */
+    }
+
+    .step-content {
+        /* Para alinear el texto correctamente al lado del icono */
+        display: block;
+    }
+
+    .step h3 {
+        margin-top: 5px;
+    }
+}
+
+
