@@ -37,6 +37,7 @@ h1, h2, h3 {
     line-height: 1.2;
 }
 
+
 /* =================================================================
    ACCESIBILIDAD Y USABILIDAD (A11Y & UX)
 ================================================================= */
@@ -208,7 +209,7 @@ a {
 }
 
 .feature-card h3 {
-    color: var(--color-acento); /* Color de acento en el título */
+    color: #00637f;
     font-size: 1.4em;
     margin-bottom: 10px;
 }
